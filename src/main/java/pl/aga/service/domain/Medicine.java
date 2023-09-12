@@ -9,7 +9,8 @@ import java.time.Period;
 public class Medicine {
 
     private final String name;
-    private final Contents contents;
+    private final Type type;
+    private final double contents;
     private final LocalDate termOfValidity;
     private final Period allowedDurationOfUse;
 }

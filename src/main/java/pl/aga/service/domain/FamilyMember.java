@@ -1,10 +1,14 @@
 package pl.aga.service.domain;
 
-import lombok.Value;
+import lombok.*;
 
 import java.util.Map;
 
-@Value
+@RequiredArgsConstructor
+@Setter
+@Getter
+@EqualsAndHashCode
+@ToString
 public class FamilyMember {
 
     private final String name;
