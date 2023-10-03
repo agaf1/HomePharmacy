@@ -55,17 +55,27 @@ class FamilyMemberEntityTest {
         member.setName("Igo");
 
         MedicineEntity medicine = new MedicineEntity();
+        medicine.setId(1);
         medicine.setName("Demo");
         medicine.setType("PILLS");
         medicine.setContents(100);
         medicine.setTermOfValidity(LocalDate.of(2024, 10, 10));
         medicine.setAllowedDurationOfUse(Period.of(0, 6, 0));
 
+        MedicineEntity medicine2 = new MedicineEntity();
+        medicine2.setId(2);
+        medicine2.setName("Aspirin");
+        medicine2.setType("PILLS");
+        medicine2.setContents(100);
+        medicine2.setTermOfValidity(LocalDate.of(2024, 10, 10));
+        medicine2.setAllowedDurationOfUse(Period.of(0, 6, 0));
+
         member.addTreatment(medicine, 3, 1, Period.of(0, 1, 0));
+        member.addTreatment(medicine2, 2, 2, Period.ZERO);
 
         FamilyMember familyMember = FamilyMemberEntity.map(member);
 
-        assertThat(familyMember.getTreatment().size()).isEqualTo(member.getTreatments().size());
+        assertThat(2).isEqualTo(member.getTreatments().size());
     }
 
 

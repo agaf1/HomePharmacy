@@ -4,13 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="886bd611-9cd9-4fdf-a4ff-ae3d7b626113" name="Changes" comment="refactoring service package">
+    <list default="true" id="886bd611-9cd9-4fdf-a4ff-ae3d7b626113" name="Changes" comment="refactoring repository.collection package">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/collection/FamilyMemberCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/collection/FamilyMemberCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/collection/HomeCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/collection/HomeCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/collection/MedicineCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/collection/MedicineCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pl/aga/repository/collection/FamilyMemberCollectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/aga/repository/collection/FamilyMemberCollectionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pl/aga/repository/collection/MedicineCollectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/aga/repository/collection/MedicineCollectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberJpa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberJpa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/MedicineEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/MedicineEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/MedicineJpa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/MedicineJpa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/MedicineJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/MedicineJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/TreatmentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/TreatmentEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/TreatmentId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/TreatmentId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/FamilyMemberEntityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/FamilyMemberEntityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/FamilyMemberJpaRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/FamilyMemberJpaRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/HomeEntityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/HomeEntityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/MedicineJpaRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/MedicineJpaRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,92 +74,92 @@
       <recent name="pl.aga.service.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MedicineCollectionTest">
-    <configuration name="FamilyMemberCollectionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.FamilyMemberJpaRepositoryTest.should_delete_treatment_from_list_of_family_member">
+    <configuration name="FamilyMemberEntityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="pl.aga.repository.collection.*" />
+          <option name="PATTERN" value="pl.aga.repository.jpa.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="pl.aga.repository.collection" />
-      <option name="MAIN_CLASS_NAME" value="pl.aga.repository.collection.FamilyMemberCollectionTest" />
+      <option name="PACKAGE_NAME" value="pl.aga.repository.jpa" />
+      <option name="MAIN_CLASS_NAME" value="pl.aga.repository.jpa.FamilyMemberEntityTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FamilyMemberCollectionTest.should_delete_treatment_from_collection" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FamilyMemberJpaRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="pl.aga.repository.collection.*" />
+          <option name="PATTERN" value="pl.aga.repository.jpa.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="pl.aga.repository.collection" />
-      <option name="MAIN_CLASS_NAME" value="pl.aga.repository.collection.FamilyMemberCollectionTest" />
-      <option name="METHOD_NAME" value="should_delete_treatment_from_collection" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FamilyMemberCollectionTest.should_not_delete_treatment_when_it_not_exist_in_Collection" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="pl.aga.repository.collection.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="pl.aga.repository.collection" />
-      <option name="MAIN_CLASS_NAME" value="pl.aga.repository.collection.FamilyMemberCollectionTest" />
-      <option name="METHOD_NAME" value="should_not_delete_treatment_when_it_not_exist_in_Collection" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FamilyMemberCollectionTest.should_return_family_member_whit_empty_name_when_not_find" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="pl.aga.repository.collection.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="pl.aga.repository.collection" />
-      <option name="MAIN_CLASS_NAME" value="pl.aga.repository.collection.FamilyMemberCollectionTest" />
-      <option name="METHOD_NAME" value="should_return_family_member_whit_empty_name_when_not_find" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MedicineCollectionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="pl.aga.repository.collection.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="pl.aga.repository.collection" />
-      <option name="MAIN_CLASS_NAME" value="pl.aga.repository.collection.MedicineCollectionTest" />
+      <option name="PACKAGE_NAME" value="pl.aga.repository.jpa" />
+      <option name="MAIN_CLASS_NAME" value="pl.aga.repository.jpa.FamilyMemberJpaRepositoryTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FamilyMemberJpaRepositoryTest.should_delete_treatment_from_list_of_family_member" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.aga.repository.jpa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.aga.repository.jpa" />
+      <option name="MAIN_CLASS_NAME" value="pl.aga.repository.jpa.FamilyMemberJpaRepositoryTest" />
+      <option name="METHOD_NAME" value="should_delete_treatment_from_list_of_family_member" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FamilyMemberJpaRepositoryTest.should_save_family_member" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.aga.repository.jpa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.aga.repository.jpa" />
+      <option name="MAIN_CLASS_NAME" value="pl.aga.repository.jpa.FamilyMemberJpaRepositoryTest" />
+      <option name="METHOD_NAME" value="should_save_family_member" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FamilyMemberJpaRepositoryTest.should_save_family_member_with_map_of_medicine_and_dosage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.aga.repository.jpa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.aga.repository.jpa" />
+      <option name="MAIN_CLASS_NAME" value="pl.aga.repository.jpa.FamilyMemberJpaRepositoryTest" />
+      <option name="METHOD_NAME" value="should_save_family_member_with_map_of_medicine_and_dosage" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MedicineCollectionTest" />
-        <item itemvalue="JUnit.FamilyMemberCollectionTest" />
-        <item itemvalue="JUnit.FamilyMemberCollectionTest.should_not_delete_treatment_when_it_not_exist_in_Collection" />
-        <item itemvalue="JUnit.FamilyMemberCollectionTest.should_delete_treatment_from_collection" />
-        <item itemvalue="JUnit.FamilyMemberCollectionTest.should_return_family_member_whit_empty_name_when_not_find" />
+        <item itemvalue="JUnit.FamilyMemberJpaRepositoryTest.should_delete_treatment_from_list_of_family_member" />
+        <item itemvalue="JUnit.FamilyMemberJpaRepositoryTest" />
+        <item itemvalue="JUnit.FamilyMemberJpaRepositoryTest.should_save_family_member_with_map_of_medicine_and_dosage" />
+        <item itemvalue="JUnit.FamilyMemberJpaRepositoryTest.should_save_family_member" />
+        <item itemvalue="JUnit.FamilyMemberEntityTest" />
       </list>
     </recent_temporary>
   </component>
@@ -221,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696320455195</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="refactoring repository.collection package">
+      <created>1696322229628</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1696322229628</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -233,7 +247,8 @@
     <MESSAGE value="actual project before refactoring" />
     <MESSAGE value="refactoring domain classes" />
     <MESSAGE value="refactoring service package" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring service package" />
+    <MESSAGE value="refactoring repository.collection package" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring repository.collection package" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -244,50 +259,28 @@
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/FamilyMemberEntityTest.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberJpaRepository.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberJpaRepository.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberJpaRepository.java</url>
-          <line>52</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/FamilyMemberJpaRepositoryTest.java</url>
-          <line>184</line>
-          <option name="timeStamp" value="34" />
+          <line>71</line>
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberJpaRepository.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="35" />
+          <url>file://$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberEntity.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/6.0.11/spring-tx-6.0.11.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.class</url>
-          <line>245</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/HomeEntity.java</url>
-          <line>28</line>
-          <properties class="pl.aga.repository.jpa.HomeEntity" method="addMember">
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberEntity.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="pl.aga.repository.jpa.FamilyMemberEntity" memberName="name" />
+        <PinnedItemInfo parentTag="pl.aga.repository.jpa.FamilyMemberEntity" memberName="treatments" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

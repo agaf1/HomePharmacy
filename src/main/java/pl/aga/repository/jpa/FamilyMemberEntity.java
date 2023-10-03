@@ -18,7 +18,7 @@ public class FamilyMemberEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String name;
 
@@ -58,6 +58,7 @@ public class FamilyMemberEntity {
 
     static FamilyMember map(FamilyMemberEntity familyMemberEntity) {
         FamilyMember familyMember = new FamilyMember(familyMemberEntity.getName());
+        familyMember.setId(familyMemberEntity.getId());
         Map<Medicine, Dosage> treatments = new HashMap<>();
         for (TreatmentEntity treatmentEntity : familyMemberEntity.getTreatments()) {
             Dosage dosage = new Dosage(treatmentEntity.getNumberOfTimesPerDay(),
@@ -75,11 +76,11 @@ public class FamilyMemberEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FamilyMemberEntity that = (FamilyMemberEntity) o;
-        return id == that.id && Objects.equals(name, that.name);
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id);
     }
 }

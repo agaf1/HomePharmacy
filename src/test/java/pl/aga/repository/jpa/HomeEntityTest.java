@@ -50,7 +50,7 @@ class HomeEntityTest {
 
 
         Assertions.assertNotNull(homeRead.getId());
-//        Assertions.assertEquals(homeRead.getFamilyMembers().size(), 4);
+        Assertions.assertEquals(homeRead.getFamilyMembers().size(), 4);
     }
 
 }

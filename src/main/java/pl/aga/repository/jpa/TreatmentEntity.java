@@ -42,19 +42,20 @@ public class TreatmentEntity {
     public TreatmentEntity(FamilyMemberEntity member, MedicineEntity medicine) {
         this.member = member;
         this.medicine = medicine;
+        // if (member.getId() != null && medicine.getId() != null) {
         this.id = new TreatmentId(member.getId(), medicine.getId());
+        //}
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this == null || getClass() != o.getClass()) return false;
-        TreatmentEntity that = (TreatmentEntity) o;
-        return Objects.equals(this.medicine, that.medicine) && Objects.equals(this.member, that.member);
+        if (!(o instanceof TreatmentEntity treatment)) return false;
+        return id != null && Objects.equals(id, treatment.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(member, medicine);
+        return Objects.hash(id);
     }
 }

@@ -28,7 +28,7 @@ public class TreatmentId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TreatmentId that = (TreatmentId) o;
-        return Objects.equals(memberId, that.memberId) && Objects.equals(medicineId, that.medicineId);
+        return memberId != null && medicineId != null && Objects.equals(memberId, that.memberId) && Objects.equals(medicineId, that.medicineId);
     }
 
     @Override

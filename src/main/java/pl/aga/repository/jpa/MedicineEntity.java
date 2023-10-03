@@ -19,7 +19,7 @@ public class MedicineEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -63,6 +63,7 @@ public class MedicineEntity {
 
     static Medicine map(MedicineEntity medicineEntity) {
         Medicine medicine = new Medicine();
+        medicine.setId(medicineEntity.getId());
         medicine.setName(medicineEntity.getName());
         medicine.setType(Type.valueOf(medicineEntity.getType()));
         medicine.setContents(medicineEntity.getContents());
@@ -76,11 +77,12 @@ public class MedicineEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MedicineEntity that = (MedicineEntity) o;
-        return id == that.id && Objects.equals(name, that.name);
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id);
     }
 }
+
