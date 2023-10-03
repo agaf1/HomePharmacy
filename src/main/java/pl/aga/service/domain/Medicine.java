@@ -1,16 +1,16 @@
 package pl.aga.service.domain;
 
-import lombok.Value;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.Period;
 
-@Value
+@Data
 public class Medicine {
 
-    private final String name;
-    private final Type type;
-    private final double contents;
-    private final LocalDate termOfValidity;
-    private final Period allowedDurationOfUse;
+    private String name;
+    private Type type;
+    private double contents;
+    private LocalDate termOfValidity;
+    private Period allowedDurationOfUse;
 }

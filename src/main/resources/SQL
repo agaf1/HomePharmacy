@@ -19,9 +19,6 @@ CREATE TABLE `home_pharmacy`.`medicine` (
   `allowed_duration_of_use` DATE NOT NULL,
   PRIMARY KEY (`id`));
 
-  CREATE TABLE `home_pharmacy`.`dosage` (
-    `id` INT NOT NULL AUTO_INCREMENT,
-    `type` VARCHAR(45) NOT NULL,
-    `times_per_day` INT NOT NULL,
-    `quantity_per_dose` DOUBLE NOT NULL,
-    PRIMARY KEY (`id`));
+
+
+

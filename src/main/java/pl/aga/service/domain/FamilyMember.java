@@ -2,6 +2,7 @@ package pl.aga.service.domain;
 
 import lombok.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -13,6 +14,6 @@ public class FamilyMember {
 
     private final String name;
 
-    Map<Medicine, Dosage> medicines;
+    Map<Medicine, Dosage> treatment = new HashMap<>();
 
 }
