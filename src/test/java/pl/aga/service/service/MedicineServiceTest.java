@@ -25,6 +25,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class MedicineServiceTest {
     @Mock
     private MedicineRepository medicineRepository;
+    @Mock
+    private LocalDateTimeSupplier localDateTimeSupplier;
     @InjectMocks
     private MedicineService medicineService = new MedicineService();
 
@@ -36,7 +38,7 @@ class MedicineServiceTest {
         Dosage dosage = new Dosage(3, 1, Period.of(0, 0, 5));
         dosage.setStartOfTreatment(LocalDate.of(2023, 9, 19));
 
-        Mockito.when(medicineRepository.findByName(medicine.getName())).thenReturn(Optional.of(medicine));
+        Mockito.when(medicineRepository.findById(medicine.getId())).thenReturn(Optional.of(medicine));
 
         medicineService.updateContentsOfMedicinePackage(medicine, dosage);
 
@@ -50,7 +52,7 @@ class MedicineServiceTest {
         Dosage dosage = new Dosage(3, 1, Period.of(0, 0, 5));
         dosage.setStartOfTreatment(LocalDate.of(2023, 9, 19));
 
-        Mockito.when(medicineRepository.findByName(medicine.getName())).thenReturn(Optional.of(medicine));
+        Mockito.when(medicineRepository.findById(medicine.getId())).thenReturn(Optional.of(medicine));
 
         assertThatThrownBy(() -> medicineService.updateContentsOfMedicinePackage(medicine, dosage))
                 .isInstanceOf(ContentsException.class)
@@ -63,7 +65,8 @@ class MedicineServiceTest {
         medicine.setTermOfValidity(LocalDate.of(2023, 9, 22));
         int days = 3;
 
-        Mockito.when(medicineRepository.findByName(medicine.getName())).thenReturn(Optional.of(medicine));
+        Mockito.when(medicineRepository.findById(medicine.getId())).thenReturn(Optional.of(medicine));
+        Mockito.when(localDateTimeSupplier.get()).thenReturn(LocalDate.of(2023, 9, 20));
 
         assertThatThrownBy(() -> medicineService.checkTermOfValidity(medicine, days))
                 .isInstanceOf(TermOfValidityException.class)
@@ -76,7 +79,8 @@ class MedicineServiceTest {
         medicine.setTermOfValidity(LocalDate.of(2023, 9, 30));
         int days = 3;
 
-        Mockito.when(medicineRepository.findByName(medicine.getName())).thenReturn(Optional.of(medicine));
+        Mockito.when(medicineRepository.findById(medicine.getId())).thenReturn(Optional.of(medicine));
+        Mockito.when(localDateTimeSupplier.get()).thenReturn(LocalDate.of(2023, 9, 20));
 
         medicineService.checkTermOfValidity(medicine, days);
 
@@ -96,6 +100,7 @@ class MedicineServiceTest {
         List<Medicine> medicines = List.of(medicine1, medicine2, medicine3, medicine4, medicine5);
 
         Mockito.when(medicineRepository.getAll()).thenReturn(medicines);
+        Mockito.when(localDateTimeSupplier.get()).thenReturn(LocalDate.of(2023, 9, 20));
 
         List<Medicine> result = medicineService.getExpiredAndEmptyMedicines();
 
@@ -104,6 +109,7 @@ class MedicineServiceTest {
 
     private static Medicine newMedicine(int contents) {
         Medicine medicine = new Medicine();
+        medicine.setId(1);
         medicine.setName("aspirin");
         medicine.setType(Type.PILLS);
         medicine.setContents(contents);

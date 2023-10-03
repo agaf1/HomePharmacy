@@ -24,6 +24,7 @@ public class FamilyMemberService {
     private FamilyMemberRepository familyMemberRepository;
     private MedicineRepository medicineRepository;
     private MedicineService medicineService;
+    private LocalDateTimeSupplier localDateTimeSupplier;
 
 
     public void createFamilyMember(FamilyMember familyMember) {
@@ -32,7 +33,7 @@ public class FamilyMemberService {
 
     public void createNewTreatment(FamilyMember familyMember, Medicine medicine, Dosage dosage) {
 
-        LocalDate startOfTreatment = LocalDate.now();
+        LocalDate startOfTreatment = localDateTimeSupplier.get();
         dosage.setStartOfTreatment(startOfTreatment);
 
         if (medicine.getAllowedDurationOfUse() != Period.ZERO) {
@@ -51,13 +52,13 @@ public class FamilyMemberService {
 
     public DailyReport createDailyReportForOneFamilyMember(FamilyMember familyMember, int days) throws Exception {
 
-        Optional<FamilyMember> member = familyMemberRepository.findByName(familyMember);
+        Optional<FamilyMember> member = familyMemberRepository.findById(familyMember.getId());
         if (member.isPresent()) {
             FamilyMember actualMember = member.get();
             Map<Medicine, Dosage> treatments = actualMember.getTreatment();
             Optional<String> warning = this.updateContentsOfMedicine(treatments);
 
-            LocalDate today = LocalDate.now();
+            LocalDate today = localDateTimeSupplier.get();
             Map<Medicine, Dosage> todayTreatment = this.updateTreatment(familyMember, treatments, today);
             Map<Medicine, String> medicineToSupplement =
                     this.checkListOfMedicineItQuantityAndValidityForNextDayAndWarnAboutIt(todayTreatment);

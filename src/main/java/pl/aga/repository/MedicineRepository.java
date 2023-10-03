@@ -9,7 +9,8 @@ public interface MedicineRepository {
 
     void save(Medicine medicine);
 
-    Optional<Medicine> findByName(String name);
+    Optional<Medicine> findById(int id);
+
 
     void delete(Medicine medicine);
 

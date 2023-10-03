@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 public class MedicineService {
 
     private MedicineRepository medicineRepository;
+    private LocalDateTimeSupplier localDateTimeSupplier;
 
     public void createMedicine(Medicine medicine) {
         medicineRepository.save(medicine);
@@ -35,7 +36,7 @@ public class MedicineService {
     }
 
     public void updateContentsOfMedicinePackage(Medicine medicine, Dosage dosage) throws Exception {
-        Optional<Medicine> medicineFromDB = medicineRepository.findByName(medicine.getName());
+        Optional<Medicine> medicineFromDB = medicineRepository.findById(medicine.getId());
         if (medicineFromDB.isPresent()) {
             double medicineContents = medicineFromDB.get().getContents();
             double dailyConsumption = dosage.getNumberOfTimesPerDay() * dosage.getQuantityPerDose();
@@ -53,10 +54,10 @@ public class MedicineService {
     }
 
     public void checkTermOfValidity(Medicine medicine, int quantityDaysEarly) throws Exception {
-        Optional<Medicine> medicineFromDB = medicineRepository.findByName(medicine.getName());
+        Optional<Medicine> medicineFromDB = medicineRepository.findById(medicine.getId());
         if (medicineFromDB.isPresent()) {
             LocalDate termOfValidity = medicineFromDB.get().getTermOfValidity();
-            LocalDate today = LocalDate.now();
+            LocalDate today = localDateTimeSupplier.get();
 
             if (termOfValidity.minus(Period.of(0, 0, quantityDaysEarly)).isBefore(today)) {
                 throw new TermOfValidityException("This medicine is almost expired.");
@@ -69,7 +70,7 @@ public class MedicineService {
     public List<Medicine> getExpiredAndEmptyMedicines() {
         List<Medicine> medicines = medicineRepository.getAll();
 
-        LocalDate today = LocalDate.now();
+        LocalDate today = localDateTimeSupplier.get();
 
         List<Medicine> medicinesToThrowAway = medicines
                 .stream()

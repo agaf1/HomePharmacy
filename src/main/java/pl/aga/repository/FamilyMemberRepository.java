@@ -9,7 +9,7 @@ public interface FamilyMemberRepository {
 
     void save(FamilyMember familyMember);
 
-    Optional<FamilyMember> findByName(FamilyMember familyMember);
+    Optional<FamilyMember> findById(Integer id);
 
     void deleteTreatment(FamilyMember familyMember, Medicine medicine);
 }

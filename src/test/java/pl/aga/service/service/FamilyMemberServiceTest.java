@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.aga.repository.FamilyMemberRepository;
 import pl.aga.repository.MedicineRepository;
@@ -32,6 +33,8 @@ class FamilyMemberServiceTest {
     private MedicineService medicineService = new MedicineService();
     @Mock
     private FamilyMemberRepository repo;
+    @Mock
+    private LocalDateTimeSupplier localDateTimeSupplier;
     @InjectMocks
     private FamilyMemberService service = new FamilyMemberService();
 
@@ -58,6 +61,8 @@ class FamilyMemberServiceTest {
     public void should_create_new_treatment_and_save_to_DB_with_out_change_term_of_validity() {
         Medicine medicine = getMedicineWithDefaultValue();
 
+        Mockito.when(localDateTimeSupplier.get()).thenReturn(LocalDate.of(2023, 9, 20));
+
         service.createNewTreatment(member, medicine, this.getDosageWithDefaultValue());
 
         verify(repo, times(1)).save(member);
@@ -67,6 +72,8 @@ class FamilyMemberServiceTest {
     public void should_create_new_treatment_and_save_to_DB_with_change_term_of_validity() {
         Medicine medicine = getMedicineWithDefaultValue();
         medicine.setAllowedDurationOfUse(Period.of(0, 6, 0));
+
+        Mockito.when(localDateTimeSupplier.get()).thenReturn(LocalDate.of(2023, 9, 20));
 
         service.createNewTreatment(member, medicine, this.getDosageWithDefaultValue());
 
@@ -79,6 +86,8 @@ class FamilyMemberServiceTest {
         Medicine medicine = getMedicineWithDefaultValue();
         medicine.setTermOfValidity(LocalDate.of(2022, 05, 05));
         medicine.setAllowedDurationOfUse(Period.of(0, 6, 0));
+
+        Mockito.when(localDateTimeSupplier.get()).thenReturn(LocalDate.of(2023, 9, 20));
 
         assertThatThrownBy(() -> service.createNewTreatment(member, medicine, this.getDosageWithDefaultValue()))
                 .isInstanceOf(IllegalArgumentException.class)
