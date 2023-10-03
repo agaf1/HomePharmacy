@@ -1,21 +1,33 @@
 package pl.aga.service.domain;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.Period;
 
+@EqualsAndHashCode
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString
-@RequiredArgsConstructor
 public class Dosage {
 
-    private final int numberOfTimesPerDay;
-    private final double quantityPerDose;
-    private final Period lengthOfTreatment;
+    private int numberOfTimesPerDay;
+    private double quantityPerDose;
+    private Period lengthOfTreatment;
 
     private LocalDate startOfTreatment;
+
+    public Dosage() {
+    }
+
+    public Dosage(int numberOfTimesPerDay, double quantityPerDose, Period lengthOfTreatment) {
+        this.numberOfTimesPerDay = numberOfTimesPerDay;
+        this.quantityPerDose = quantityPerDose;
+        this.lengthOfTreatment = lengthOfTreatment;
+        startOfTreatment = LocalDate.now();
+    }
 
 }

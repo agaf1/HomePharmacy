@@ -4,56 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="886bd611-9cd9-4fdf-a4ff-ae3d7b626113" name="Changes" comment="corrected class of jpa package in repository">
-      <change afterPath="$PROJECT_DIR$/.idea/google-java-format.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/FamilyMemberRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/HomeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/MedicineRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/collection/DosageCollection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/collection/FamilyMemberCollection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/collection/HomeCollection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/collection/MedicineCollection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberJpa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberJpaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/HomeJpa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/HomeJpaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/HomeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/MedicineJpa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/MedicineJpaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/TreatmentEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/TreatmentId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/TreatmentJpa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/TreatmentJpaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/service/domain/DailyReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/service/exception/ContentsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/service/exception/TermOfValidityException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/service/service/FamilyMemberService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/service/service/HomeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/aga/service/service/MedicineService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/aga/ApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/aga/repository/collection/FamilyMemberCollectionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/aga/repository/collection/MedicineCollectionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/FamilyMemberEntityTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/FamilyMemberJpaRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/HomeEntityTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/HomeJpaRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/aga/repository/jpa/MedicineJpaRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/aga/service/service/FamilyMemberServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/aga/service/service/MedicineServiceTest.java" afterDir="false" />
+    <list default="true" id="886bd611-9cd9-4fdf-a4ff-ae3d7b626113" name="Changes" comment="actual project before refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/DosageEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/FamilyMemberEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/HomeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/HomeEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/MedicineEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/repository/jpa/MedicineEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/service/domain/Dosage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/service/domain/Dosage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/service/domain/FamilyMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/service/domain/FamilyMember.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/service/domain/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/service/domain/Home.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/aga/service/domain/Medicine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/aga/service/domain/Medicine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/SQL" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/SQL" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694517160963</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="actual project before refactoring">
+      <created>1696316695689</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1696316695689</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -254,7 +217,8 @@
     <MESSAGE value="new corrected class of domain package" />
     <MESSAGE value="add new class of jpa package in repository" />
     <MESSAGE value="corrected class of jpa package in repository" />
-    <option name="LAST_COMMIT_MESSAGE" value="corrected class of jpa package in repository" />
+    <MESSAGE value="actual project before refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="actual project before refactoring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
