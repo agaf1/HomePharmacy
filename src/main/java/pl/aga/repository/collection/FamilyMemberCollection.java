@@ -48,7 +48,7 @@ public class FamilyMemberCollection implements FamilyMemberRepository {
 
 
     @Override
-    public void save(FamilyMember familyMember) {
+    public void save(Integer homeId, FamilyMember familyMember) {
         FamilyMemberCollection familyMemberCollection = new FamilyMemberCollection(familyMember.getName(), familyMember.getId());
         familyMemberCollection.setTreatmentsCollection(this.of(familyMember.getTreatment()));
         members.add(familyMemberCollection);
@@ -68,6 +68,17 @@ public class FamilyMemberCollection implements FamilyMemberRepository {
             return Optional.of(familyMemberFromCollection1);
         }
         return Optional.empty();
+    }
+
+    @Override
+    public void saveTreatment(Integer familyMemberId, FamilyMember familyMember) {
+        Integer homeId = null;
+        save(homeId, familyMember);
+    }
+
+    @Override
+    public void saveTreatment(Integer familyMemberId, Integer medicineId, FamilyMember familyMember) {
+        this.save(familyMemberId, familyMember);
     }
 
     @Override

@@ -34,7 +34,7 @@ public class MedicineEntity {
     private LocalDate termOfValidity;
 
     @Column(name = "allowed_duration_of_use")
-    private Period allowedDurationOfUse;
+    private String allowedDurationOfUse;
 
     @OneToMany(mappedBy = "medicine", cascade = CascadeType.ALL)
     private Set<TreatmentEntity> treatments;
@@ -43,21 +43,17 @@ public class MedicineEntity {
     public MedicineEntity() {
     }
 
-    public MedicineEntity(String name, String type, double contents, LocalDate termOfValidity, Period allowedDurationOfUse) {
-        this.name = name;
-        this.type = type;
-        this.contents = contents;
-        this.termOfValidity = termOfValidity;
-        this.allowedDurationOfUse = allowedDurationOfUse;
-    }
 
     static MedicineEntity of(Medicine medicine) {
         MedicineEntity medicineEntity = new MedicineEntity();
+        if (medicine.getId() != null) {
+            medicineEntity.setId(medicine.getId());
+        }
         medicineEntity.setName(medicine.getName());
         medicineEntity.setType(medicine.getType().toString());
         medicineEntity.setContents(medicine.getContents());
         medicineEntity.setTermOfValidity(medicine.getTermOfValidity());
-        medicineEntity.setAllowedDurationOfUse(medicine.getAllowedDurationOfUse());
+        medicineEntity.setAllowedDurationOfUse(setStringFromPeriod(medicine.getAllowedDurationOfUse()));
         return medicineEntity;
     }
 
@@ -68,7 +64,7 @@ public class MedicineEntity {
         medicine.setType(Type.valueOf(medicineEntity.getType()));
         medicine.setContents(medicineEntity.getContents());
         medicine.setTermOfValidity(medicineEntity.getTermOfValidity());
-        medicine.setAllowedDurationOfUse(medicineEntity.getAllowedDurationOfUse());
+        medicine.setAllowedDurationOfUse(setPeriodFromString(medicineEntity.getAllowedDurationOfUse()));
         return medicine;
     }
 
@@ -83,6 +79,22 @@ public class MedicineEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    static String setStringFromPeriod(Period allowedDurationOfUse) {
+        String result = String.join(":",
+                String.valueOf(allowedDurationOfUse.getYears()),
+                String.valueOf(allowedDurationOfUse.getMonths()),
+                String.valueOf(allowedDurationOfUse.getDays()));
+        return result;
+    }
+
+    static Period setPeriodFromString(String allowedDurationOfUse) {
+        if (allowedDurationOfUse != null) {
+            String[] period = allowedDurationOfUse.split(":");
+            return Period.of(Integer.valueOf(period[0]), Integer.valueOf(period[1]), Integer.valueOf(period[2]));
+        }
+        return Period.ZERO;
     }
 }
 

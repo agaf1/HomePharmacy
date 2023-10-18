@@ -24,7 +24,7 @@ class FamilyMemberCollectionTest {
         familyMember.setId(1);
         familyMember.setTreatment(Map.of(getMedicine(), new Dosage(1, 2, Period.ZERO)));
 
-        familyMemberCollection.save(familyMember);
+        familyMemberCollection.save(1, familyMember);
 
         Assertions.assertEquals("Aga", familyMemberCollection.members.get(0).getName());
     }

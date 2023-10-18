@@ -36,7 +36,7 @@ public class HomeEntity {
         HomeEntity homeEntity = new HomeEntity();
         homeEntity.setFamilyName(home.getFamilyName());
         for (FamilyMember member : home.getFamilyMembers()) {
-            homeEntity.addMember(FamilyMemberEntity.of(member));
+            homeEntity.addMember(FamilyMemberEntity.of(homeEntity, member));
         }
         return homeEntity;
     }

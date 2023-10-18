@@ -46,20 +46,16 @@ class HomeJpaRepositoryTest {
     @Sql(statements = "truncate table medicine")
     @Sql(statements = "SET FOREIGN_KEY_CHECKS = 1")
     public void should_save_home_entity_with_list_of_family_member_entity() {
-        Home home = new Home("Kowalski");
-        FamilyMember member1 = new FamilyMember("Aga");
-        FamilyMember member2 = new FamilyMember("Luke");
-        home.getFamilyMembers().add(member1);
-        home.getFamilyMembers().add(member2);
+        Home home = createHome();
 
-        Home savedHome = homeJpaRepository.save(home);
-        Home readedHome = homeJpaRepository.findById(home.getId());
+        homeJpaRepository.save(home);
+        Home readedHome = homeJpaRepository.findById(Integer.valueOf(1));
 
-        assertThat(savedHome.getId()).isEqualTo(readedHome.getId());
-        assertThat(readedHome.getFamilyMembers());
+        assertThat(readedHome.getFamilyMembers().get(1).getId()).isEqualTo(2);
         assertThat(1).isEqualTo(homeJpaRepository.count());
         assertThat(2).isEqualTo(homeJpaRepository.getAll().get(0).getFamilyMembers().size());
     }
+
 
     @Test
     @Sql(statements = "SET FOREIGN_KEY_CHECKS = 0")
@@ -69,19 +65,26 @@ class HomeJpaRepositoryTest {
     @Sql(statements = "truncate table medicine")
     @Sql(statements = "SET FOREIGN_KEY_CHECKS = 1")
     public void should_delete_home() {
-        Home home = new Home("Kowalski");
-        FamilyMember member1 = new FamilyMember("Aga");
-        FamilyMember member2 = new FamilyMember("Luke");
-        home.getFamilyMembers().add(member1);
-        home.getFamilyMembers().add(member2);
+        Home home = createHome();
 
-        Home savedHome = homeJpaRepository.save(home);
+        homeJpaRepository.save(home);
 
         assertThat(homeJpaRepository.getAll().size()).isEqualTo(1);
 
+        home.setId(1);
         homeJpaRepository.delete(home);
 
         assertThat(homeJpaRepository.getAll().size()).isEqualTo(0);
 
     }
+    
+    private static Home createHome() {
+        Home home = new Home("Kowalski");
+        FamilyMember member1 = new FamilyMember("Aga");
+        FamilyMember member2 = new FamilyMember("Luke");
+        home.getFamilyMembers().add(member1);
+        home.getFamilyMembers().add(member2);
+        return home;
+    }
+
 }

@@ -20,7 +20,6 @@ public class Home {
 
     public Home(String familyName) {
         this.familyName = familyName;
-        id = null;
     }
 
     public Home() {

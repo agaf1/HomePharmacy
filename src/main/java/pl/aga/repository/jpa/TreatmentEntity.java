@@ -31,7 +31,7 @@ public class TreatmentEntity {
     private double quantityPerDose;
 
     @Column(name = "length_of_treatment")
-    private Period lengthOfTreatment;
+    private String lengthOfTreatment;
 
     @Column(name = "start_of_treatment")
     private LocalDate startOfTreatment;
@@ -42,9 +42,7 @@ public class TreatmentEntity {
     public TreatmentEntity(FamilyMemberEntity member, MedicineEntity medicine) {
         this.member = member;
         this.medicine = medicine;
-        // if (member.getId() != null && medicine.getId() != null) {
         this.id = new TreatmentId(member.getId(), medicine.getId());
-        //}
     }
 
     @Override
@@ -57,5 +55,22 @@ public class TreatmentEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+
+    public String setLengthOfTreatment(Period lengthOfTreatment) {
+        this.lengthOfTreatment = String.join(":",
+                String.valueOf(lengthOfTreatment.getYears()),
+                String.valueOf(lengthOfTreatment.getMonths()),
+                String.valueOf(lengthOfTreatment.getDays()));
+        return this.lengthOfTreatment;
+    }
+
+    public Period getLengthOfTreatment() {
+        if (lengthOfTreatment != null) {
+            String[] period = lengthOfTreatment.split(":");
+            return Period.of(Integer.valueOf(period[0]), Integer.valueOf(period[1]), Integer.valueOf(period[2]));
+        }
+        return Period.ZERO;
     }
 }

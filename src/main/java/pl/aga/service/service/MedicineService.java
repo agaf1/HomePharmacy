@@ -18,14 +18,16 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MedicineService {
 
-    private MedicineRepository medicineRepository;
-    private LocalDateTimeSupplier localDateTimeSupplier;
+    private final MedicineRepository medicineRepository;
+    private final LocalDateTimeSupplier localDateTimeSupplier;
+
 
     public void createMedicine(Medicine medicine) {
         medicineRepository.save(medicine);
     }
 
-    public void deleteMedicine(Medicine medicine) {
+    public void deleteMedicine(Integer id) {
+        Medicine medicine = medicineRepository.findById(id).orElseThrow();
         medicineRepository.delete(medicine);
     }
 

@@ -7,6 +7,7 @@ import pl.aga.service.domain.Dosage;
 import pl.aga.service.domain.FamilyMember;
 import pl.aga.service.domain.Medicine;
 
+import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
@@ -22,7 +23,8 @@ public class FamilyMemberEntity {
 
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+//    (cascade = CascadeType.ALL)
     private HomeEntity home;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -35,23 +37,26 @@ public class FamilyMemberEntity {
         this.name = name;
     }
 
-    public void addTreatment(MedicineEntity medicine, int numberOfTimesPerDay, double quantityPerDose, Period lengthOfTreatment) {
+    public void addTreatment(MedicineEntity medicine, int numberOfTimesPerDay, double quantityPerDose, Period lengthOfTreatment, LocalDate startOfTreatment) {
         TreatmentEntity treatment = new TreatmentEntity(this, medicine);
         treatment.setNumberOfTimesPerDay(numberOfTimesPerDay);
         treatment.setQuantityPerDose(quantityPerDose);
         treatment.setLengthOfTreatment(lengthOfTreatment);
+        treatment.setStartOfTreatment(startOfTreatment);
         this.getTreatments().add(treatment);
     }
 
-    static FamilyMemberEntity of(FamilyMember familyMember) {
+    static FamilyMemberEntity of(HomeEntity homeEntity, FamilyMember familyMember) {
         FamilyMemberEntity familyMemberEntity = new FamilyMemberEntity();
         familyMemberEntity.setName(familyMember.getName());
+        familyMemberEntity.setHome(homeEntity);
         for (Map.Entry<Medicine, Dosage> memberTreatment : familyMember.getTreatment().entrySet()) {
             familyMemberEntity.addTreatment
                     (MedicineEntity.of(memberTreatment.getKey()),
                             memberTreatment.getValue().getNumberOfTimesPerDay(),
                             memberTreatment.getValue().getQuantityPerDose(),
-                            memberTreatment.getValue().getLengthOfTreatment());
+                            memberTreatment.getValue().getLengthOfTreatment(),
+                            memberTreatment.getValue().getStartOfTreatment());
         }
         return familyMemberEntity;
     }
@@ -76,11 +81,15 @@ public class FamilyMemberEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FamilyMemberEntity that = (FamilyMemberEntity) o;
-        return id == that.id;
+        return id != null && id == that.id;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public Integer getId() {
+        return id;
     }
 }

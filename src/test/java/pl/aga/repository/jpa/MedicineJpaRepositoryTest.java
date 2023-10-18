@@ -29,6 +29,7 @@ class MedicineJpaRepositoryTest {
     @Sql(statements = "SET FOREIGN_KEY_CHECKS = 1")
     public void should_save_medicine() {
         Medicine medicine = getMedicine();
+        medicine.setAllowedDurationOfUse(Period.of(0, 6, 0));
 
         medicineRepo.save(medicine);
 
@@ -45,11 +46,13 @@ class MedicineJpaRepositoryTest {
     @Sql(statements = "SET FOREIGN_KEY_CHECKS = 1")
     public void should_find_medicine_by_name() {
         Medicine medicine = getMedicine();
+        medicine.setAllowedDurationOfUse(Period.of(0, 6, 0));
 
         medicineRepo.save(medicine);
         Optional<Medicine> result = medicineRepo.findById(1);
 
         assertThat(Type.PILLS).isEqualTo(result.get().getType());
+        assertThat(Period.of(0, 6, 0)).isEqualTo(result.get().getAllowedDurationOfUse());
     }
 
     @Test

@@ -9,7 +9,7 @@ import pl.aga.service.domain.Home;
 @RequiredArgsConstructor
 public class HomeService {
 
-    private HomeJpaRepository homeJpaRepository;
+    private final HomeJpaRepository homeJpaRepository;
 
     public void createHome(Home home) {
         homeJpaRepository.save(home);

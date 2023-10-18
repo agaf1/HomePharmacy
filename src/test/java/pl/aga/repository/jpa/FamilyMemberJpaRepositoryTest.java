@@ -5,10 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
-import pl.aga.service.domain.Dosage;
-import pl.aga.service.domain.FamilyMember;
-import pl.aga.service.domain.Medicine;
-import pl.aga.service.domain.Type;
+import pl.aga.service.domain.*;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -21,6 +18,8 @@ class FamilyMemberJpaRepositoryTest {
 
     @Autowired
     private FamilyMemberJpaRepository repo;
+    @Autowired
+    private HomeJpaRepository homeRepo;
 
     @Test
     @Sql(statements = "SET FOREIGN_KEY_CHECKS = 0")
@@ -29,12 +28,15 @@ class FamilyMemberJpaRepositoryTest {
     @Sql(statements = "truncate table home")
     @Sql(statements = "truncate table medicine")
     @Sql(statements = "SET FOREIGN_KEY_CHECKS = 1")
-    public void should_save_family_member() {
+    public void should_save_family_member_to_existing_home() {
+        Home home = new Home("Nowak");
+        homeRepo.save(home);
+
         FamilyMember familyMember = new FamilyMember("Aga");
-        repo.save(familyMember);
+        repo.save(1, familyMember);
 
         FamilyMember familyMember1 = new FamilyMember("Luke");
-        repo.save(familyMember1);
+        repo.save(1, familyMember1);
 
         Assertions.assertThat(2).isEqualTo(repo.count());
     }
@@ -47,6 +49,9 @@ class FamilyMemberJpaRepositoryTest {
     @Sql(statements = "truncate table medicine")
     @Sql(statements = "SET FOREIGN_KEY_CHECKS = 1")
     public void should_save_family_member_with_map_of_medicine_and_dosage() {
+        Home home = new Home("Nowak");
+        homeRepo.save(home);
+
         FamilyMember familyMember = new FamilyMember("Aga");
         Medicine medicine1 = new Medicine();
         medicine1.setName("Aspirin");
@@ -66,7 +71,7 @@ class FamilyMemberJpaRepositoryTest {
         familyMember.getTreatment().put(medicine1, dosage);
         familyMember.getTreatment().put(medicine2, dosage);
 
-        repo.save(familyMember);
+        repo.save(1, familyMember);
         List<FamilyMemberEntity> readList = repo.findAll();
 
         Assertions.assertThat(1).isEqualTo(repo.count());
@@ -81,6 +86,9 @@ class FamilyMemberJpaRepositoryTest {
     @Sql(statements = "truncate table medicine")
     @Sql(statements = "SET FOREIGN_KEY_CHECKS = 1")
     public void should_find_family_member_by_id() {
+        Home home = new Home("Nowak");
+        homeRepo.save(home);
+
         FamilyMember familyMember1 = new FamilyMember("Aga");
         familyMember1.setId(1);
         FamilyMember familyMember2 = new FamilyMember("Luke");
@@ -88,9 +96,9 @@ class FamilyMemberJpaRepositoryTest {
         FamilyMember familyMember3 = new FamilyMember("Igo");
         familyMember3.setId(3);
 
-        repo.save(familyMember1);
-        repo.save(familyMember2);
-        repo.save(familyMember3);
+        repo.save(1, familyMember1);
+        repo.save(1, familyMember2);
+        repo.save(1, familyMember3);
 
         Optional<FamilyMember> result = repo.findById(familyMember2.getId());
 
@@ -105,12 +113,15 @@ class FamilyMemberJpaRepositoryTest {
     @Sql(statements = "truncate table medicine")
     @Sql(statements = "SET FOREIGN_KEY_CHECKS = 1")
     public void should_not_find_family_member_by_name_and_return_empty_optional() {
+        Home home = new Home("Nowak");
+        homeRepo.save(home);
+
         FamilyMember familyMember1 = new FamilyMember("Aga");
         FamilyMember familyMember2 = new FamilyMember("Luke");
         FamilyMember familyMember3 = new FamilyMember("Igo");
 
-        repo.save(familyMember1);
-        repo.save(familyMember2);
+        repo.save(1, familyMember1);
+        repo.save(1, familyMember2);
 
         Optional<FamilyMember> result = repo.findById(3);
 
@@ -125,6 +136,9 @@ class FamilyMemberJpaRepositoryTest {
     @Sql(statements = "truncate table medicine")
     @Sql(statements = "SET FOREIGN_KEY_CHECKS = 1")
     public void should_find_all_treatment_for_Aga() {
+        Home home = new Home("Nowak");
+        homeRepo.save(home);
+
         FamilyMember familyMember = new FamilyMember("Aga");
         Medicine medicine1 = new Medicine();
         medicine1.setName("Aspirin");
@@ -146,8 +160,8 @@ class FamilyMemberJpaRepositoryTest {
         FamilyMember familyMember2 = new FamilyMember("Luke");
         familyMember2.getTreatment().put(medicine1, dosage);
 
-        repo.save(familyMember);
-        repo.save(familyMember2);
+        repo.save(1, familyMember);
+        repo.save(1, familyMember2);
 
         Set<TreatmentEntity> result = repo.findAllByFamilyMemberId(1);
 
@@ -162,6 +176,9 @@ class FamilyMemberJpaRepositoryTest {
     @Sql(statements = "truncate table medicine")
     @Sql(statements = "SET FOREIGN_KEY_CHECKS = 1")
     public void should_delete_treatment_from_list_of_family_member() {
+        Home home = new Home("Nowak");
+        homeRepo.save(home);
+        
         FamilyMember familyMember = new FamilyMember("Aga");
         Medicine medicine1 = new Medicine();
         medicine1.setName("Aspirin");
@@ -180,7 +197,7 @@ class FamilyMemberJpaRepositoryTest {
         familyMember.getTreatment().put(medicine1, dosage);
         familyMember.getTreatment().put(medicine2, dosage);
 
-        repo.save(familyMember);
+        repo.save(1, familyMember);
         List<FamilyMemberEntity> readList1 = repo.findAll();
 
         Assertions.assertThat(2).isEqualTo(readList1.get(0).getTreatments().size());

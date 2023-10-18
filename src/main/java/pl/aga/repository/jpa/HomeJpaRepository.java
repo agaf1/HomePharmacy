@@ -1,6 +1,7 @@
 package pl.aga.repository.jpa;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pl.aga.repository.HomeRepository;
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
+@Qualifier("HomeJpaRepository")
 public class HomeJpaRepository implements HomeRepository {
 
     private final HomeJpa homeJpa;
@@ -18,16 +20,13 @@ public class HomeJpaRepository implements HomeRepository {
     private final HomeMapper homeMapper;
 
     @Transactional
-    public Home save(Home home) {
+    public void save(Home home) {
         HomeEntity entity = HomeEntity.of(home);
         homeJpa.save(entity);
-        home.setId(entity.getId());
-        return home;
     }
 
     @Transactional(readOnly = true)
     public Home findById(Integer id) {
-
         Optional<HomeEntity> entity = homeJpa.findById(id);
         return homeMapper.map(entity.orElse(null));
     }

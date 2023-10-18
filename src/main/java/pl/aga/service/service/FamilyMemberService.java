@@ -21,17 +21,20 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class FamilyMemberService {
 
-    private FamilyMemberRepository familyMemberRepository;
-    private MedicineRepository medicineRepository;
-    private MedicineService medicineService;
-    private LocalDateTimeSupplier localDateTimeSupplier;
+    private final FamilyMemberRepository familyMemberRepository;
+    private final MedicineRepository medicineRepository;
+    private final MedicineService medicineService;
+    private final LocalDateTimeSupplier localDateTimeSupplier;
 
-
-    public void createFamilyMember(FamilyMember familyMember) {
-        familyMemberRepository.save(familyMember);
+    public void createFamilyMember(Integer homeId, FamilyMember familyMember) {
+        familyMemberRepository.save(homeId, familyMember);
     }
 
-    public void createNewTreatment(FamilyMember familyMember, Medicine medicine, Dosage dosage) {
+    public void createNewTreatment(Integer familyMemberId, Integer medicineId, Dosage dosage) {
+
+        FamilyMember familyMember = familyMemberRepository.findById(familyMemberId).orElseThrow();
+
+        Medicine medicine = medicineRepository.findById(medicineId).orElseThrow();
 
         LocalDate startOfTreatment = localDateTimeSupplier.get();
         dosage.setStartOfTreatment(startOfTreatment);
@@ -44,24 +47,24 @@ public class FamilyMemberService {
 
         if (startOfTreatment.isBefore(medicine.getTermOfValidity())) {
             familyMember.setTreatment(Map.of(medicine, dosage));
-            familyMemberRepository.save(familyMember);
+            familyMemberRepository.saveTreatment(familyMemberId, medicineId, familyMember);
         } else {
             throw new IllegalArgumentException("This medicine has already expired. Use new one.");
         }
     }
 
-    public DailyReport createDailyReportForOneFamilyMember(FamilyMember familyMember, int days) throws Exception {
+    public DailyReport createDailyReportForOneFamilyMember(Integer familyMemberId, int days) throws Exception {
 
-        Optional<FamilyMember> member = familyMemberRepository.findById(familyMember.getId());
+        Optional<FamilyMember> member = familyMemberRepository.findById(familyMemberId);
         if (member.isPresent()) {
             FamilyMember actualMember = member.get();
             Map<Medicine, Dosage> treatments = actualMember.getTreatment();
             Optional<String> warning = this.updateContentsOfMedicine(treatments);
 
             LocalDate today = localDateTimeSupplier.get();
-            Map<Medicine, Dosage> todayTreatment = this.updateTreatment(familyMember, treatments, today);
+            Map<Medicine, Dosage> todayTreatment = this.updateTreatment(member.orElseThrow(), treatments, today);
             Map<Medicine, String> medicineToSupplement =
-                    this.checkListOfMedicineItQuantityAndValidityForNextDayAndWarnAboutIt(todayTreatment);
+                    this.checkListOfMedicineItQuantityAndValidityForNextDayAndWarnAboutIt(todayTreatment, days);
 
             DailyReport dailyReport = new DailyReport();
             dailyReport.setNameOfFamilyMember(actualMember.getName());
@@ -102,14 +105,14 @@ public class FamilyMemberService {
         return warning;
     }
 
-    Map<Medicine, String> checkListOfMedicineItQuantityAndValidityForNextDayAndWarnAboutIt(Map<Medicine, Dosage> todayTreatment) throws Exception {
+    Map<Medicine, String> checkListOfMedicineItQuantityAndValidityForNextDayAndWarnAboutIt(Map<Medicine, Dosage> todayTreatment, int days) throws Exception {
 
         Map<Medicine, String> medicineToSupplement = new HashMap<>();
 
         for (Map.Entry<Medicine, Dosage> entry : todayTreatment.entrySet()) {
             try {
                 medicineService.updateContentsOfMedicinePackage(entry.getKey(), entry.getValue());
-                medicineService.checkTermOfValidity(entry.getKey(), 1);
+                medicineService.checkTermOfValidity(entry.getKey(), days);
             } catch (ContentsException e) {
                 medicineToSupplement.put(entry.getKey(), e.getMessage());
             } catch (TermOfValidityException ex) {

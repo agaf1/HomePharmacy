@@ -21,7 +21,7 @@ public class FamilyMember {
 
     public FamilyMember(String name) {
         this.name = name;
-        id = null;
+       
     }
 
     public FamilyMember() {

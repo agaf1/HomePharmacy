@@ -4,13 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pl.aga.repository.FamilyMemberRepository;
+import pl.aga.service.domain.Dosage;
 import pl.aga.service.domain.FamilyMember;
 import pl.aga.service.domain.Medicine;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
@@ -19,10 +17,34 @@ public class FamilyMemberJpaRepository implements FamilyMemberRepository {
     private final FamilyMemberJpa familyMemberJpa;
     private final TreatmentJpaRepository treatmentJpa;
     private final MedicineJpaRepository medicineJpa;
+    private final HomeJpa homeJpa;
 
     @Override
-    public void save(FamilyMember familyMember) {
-        familyMemberJpa.save(FamilyMemberEntity.of(familyMember));
+    public void save(Integer homeId, FamilyMember familyMember) {
+        HomeEntity homeEntity = homeJpa.findById(homeId).orElseThrow();
+        familyMemberJpa.save(FamilyMemberEntity.of(homeEntity, familyMember));
+    }
+
+    @Override
+    public void saveTreatment(Integer familyMemberId, FamilyMember familyMember) {
+        FamilyMemberEntity familyMemberEntity = familyMemberJpa.findById(familyMemberId).orElseThrow();
+        Integer homeId = familyMemberEntity.getHome().getId();
+        save(homeId, familyMember);
+    }
+
+    public void saveTreatment(Integer familyMemberId, Integer medicineId, FamilyMember familyMember) {
+        FamilyMemberEntity familyMemberEntity = familyMemberJpa.findById(familyMemberId).orElseThrow();
+        MedicineEntity medicineEntity = medicineJpa.findEntityById(medicineId).orElseThrow();
+        Dosage dosage = new Dosage();
+        for (Map.Entry<Medicine, Dosage> treatment : familyMember.getTreatment().entrySet()) {
+            dosage = treatment.getValue();
+        }
+        familyMemberEntity.addTreatment(medicineEntity,
+                dosage.getNumberOfTimesPerDay(),
+                dosage.getQuantityPerDose(),
+                dosage.getLengthOfTreatment(),
+                dosage.getStartOfTreatment());
+        familyMemberJpa.save(familyMemberEntity);
     }
 
     @Override

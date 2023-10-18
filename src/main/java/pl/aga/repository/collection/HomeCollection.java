@@ -15,7 +15,7 @@ public class HomeCollection implements HomeRepository {
 
 
     @Override
-    public Home save(Home home) {
+    public void save(Home home) {
         String homeName = home.getFamilyName();
         int idHome = home.getId();
         List<FamilyMemberCollection> members = new ArrayList<>();
@@ -23,7 +23,6 @@ public class HomeCollection implements HomeRepository {
             members.add(new FamilyMemberCollection(familyMember.getName(), familyMember.getId()));
         }
         homeCollection.put(homeName, members);
-        return home;
     }
 
     @Override

@@ -7,9 +7,13 @@ import java.util.Optional;
 
 public interface FamilyMemberRepository {
 
-    void save(FamilyMember familyMember);
+    void save(Integer homeId, FamilyMember familyMember);
 
     Optional<FamilyMember> findById(Integer id);
+
+    void saveTreatment(Integer familyMemberId, FamilyMember familyMember);
+
+    void saveTreatment(Integer familyMemberId, Integer medicineId, FamilyMember familyMember);
 
     void deleteTreatment(FamilyMember familyMember, Medicine medicine);
 }

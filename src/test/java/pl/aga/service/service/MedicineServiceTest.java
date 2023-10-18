@@ -28,7 +28,7 @@ class MedicineServiceTest {
     @Mock
     private LocalDateTimeSupplier localDateTimeSupplier;
     @InjectMocks
-    private MedicineService medicineService = new MedicineService();
+    private MedicineService medicineService;
 
 
     @Test

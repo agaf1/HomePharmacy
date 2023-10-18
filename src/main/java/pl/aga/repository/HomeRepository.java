@@ -3,7 +3,7 @@ package pl.aga.repository;
 import pl.aga.service.domain.Home;
 
 public interface HomeRepository {
-    Home save(Home home);
+    void save(Home home);
 
     long count();
 }

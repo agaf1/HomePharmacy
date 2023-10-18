@@ -35,9 +35,9 @@ class FamilyMemberEntityTest {
         medicine.setType("PILLS");
         medicine.setContents(100);
         medicine.setTermOfValidity(LocalDate.of(2024, 10, 10));
-        medicine.setAllowedDurationOfUse(Period.of(0, 6, 0));
+        medicine.setAllowedDurationOfUse(MedicineEntity.setStringFromPeriod(Period.of(0, 6, 0)));
 
-        member.addTreatment(medicine, 3, 1, Period.of(0, 1, 0));
+        member.addTreatment(medicine, 3, 1, Period.of(0, 1, 0), LocalDate.of(2023, 10, 10));
 
         entityManager.persist(member);
         entityManager.flush();
@@ -60,7 +60,7 @@ class FamilyMemberEntityTest {
         medicine.setType("PILLS");
         medicine.setContents(100);
         medicine.setTermOfValidity(LocalDate.of(2024, 10, 10));
-        medicine.setAllowedDurationOfUse(Period.of(0, 6, 0));
+        medicine.setAllowedDurationOfUse(MedicineEntity.setStringFromPeriod(Period.of(0, 6, 0)));
 
         MedicineEntity medicine2 = new MedicineEntity();
         medicine2.setId(2);
@@ -68,10 +68,10 @@ class FamilyMemberEntityTest {
         medicine2.setType("PILLS");
         medicine2.setContents(100);
         medicine2.setTermOfValidity(LocalDate.of(2024, 10, 10));
-        medicine2.setAllowedDurationOfUse(Period.of(0, 6, 0));
+        medicine2.setAllowedDurationOfUse(MedicineEntity.setStringFromPeriod(Period.of(0, 6, 0)));
 
-        member.addTreatment(medicine, 3, 1, Period.of(0, 1, 0));
-        member.addTreatment(medicine2, 2, 2, Period.ZERO);
+        member.addTreatment(medicine, 3, 1, Period.of(0, 1, 0), LocalDate.of(2023, 10, 10));
+        member.addTreatment(medicine2, 2, 2, Period.ZERO, LocalDate.of(2024, 10, 10));
 
         FamilyMember familyMember = FamilyMemberEntity.map(member);
 
